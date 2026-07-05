@@ -1,8 +1,12 @@
 # Android Automotive for Raspberry Pi 4
 
-This repository contains the project-specific files needed to add the Navis
-Calculator Binder service to an Android 15 Automotive build for Raspberry Pi 4.
-It intentionally excludes the AOSP source tree and generated build output.
+This repository contains the complete Raspberry Pi 4 device tree used by this
+Android 15 Automotive build, including its media, audio, camera, car, Bluetooth,
+graphics, and SELinux configuration. It also adds the Navis Calculator Binder
+service.
+
+The upstream AOSP source tree and generated build output are intentionally
+excluded.
 
 ## Sync the source tree
 
