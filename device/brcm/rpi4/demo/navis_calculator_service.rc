@@ -1,0 +1,9 @@
+service navis-calculator /system_ext/bin/navis_calculator_service
+    interface aidl navis.calculator.ICalculator/default
+    class main
+    user system
+    group system
+    disabled
+
+on property:sys.boot_completed=1
+    start navis-calculator

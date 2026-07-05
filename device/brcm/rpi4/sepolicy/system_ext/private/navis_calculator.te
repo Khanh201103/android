@@ -1,0 +1,25 @@
+type navis_calculator, coredomain, domain;
+type navis_calculator_exec, system_file_type, file_type, exec_type;
+
+init_daemon_domain(navis_calculator)
+
+binder_use(navis_calculator)
+binder_service(navis_calculator)
+add_service(navis_calculator, navis_calculator_service)
+
+allow platform_app navis_calculator_service:service_manager find;
+binder_call(platform_app, navis_calculator)
+
+allow system_app navis_calculator_service:service_manager find;
+binder_call(system_app, navis_calculator)
+
+allow priv_app navis_calculator_service:service_manager find;
+binder_call(priv_app, navis_calculator)
+
+userdebug_or_eng(`
+    allow untrusted_app_all navis_calculator_service:service_manager find;
+    binder_call(untrusted_app_all, navis_calculator)
+
+    allow shell navis_calculator_service:service_manager find;
+    binder_call(shell, navis_calculator)
+')

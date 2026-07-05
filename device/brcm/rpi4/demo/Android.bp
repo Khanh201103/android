@@ -1,0 +1,38 @@
+aidl_interface {
+    name: "navis.calculator",
+    srcs: ["aidl/navis/calculator/ICalculator.aidl"],
+    local_include_dir: "aidl",
+    unstable: true,
+    backend: {
+        java: {
+            enabled: false,
+        },
+        cpp: {
+            enabled: false,
+        },
+        ndk: {
+            enabled: true,
+        },
+    },
+}
+
+cc_binary {
+    name: "navis_calculator_service",
+    srcs: [
+        "CalculatorService.cpp",
+        "main.cpp",
+    ],
+    init_rc: ["navis_calculator_service.rc"],
+    system_ext_specific: true,
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "liblog",
+        "navis.calculator-ndk",
+    ],
+}
